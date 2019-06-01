@@ -1,16 +1,21 @@
-module InstructionMemory (ReadAddress, Instruction);
+module InstructionMemory (clk, ReadAddress, Instruction);
 
+input clk;
 input [9:0]  ReadAddress;
-output [31:0] Instruction;
+output reg[31:0] Instruction;
 reg [7:0] Memory [0:1023];
+reg [3:0] contador;
 
-initial 
-	$readmemh("instructions.txt", Memory);
+initial begin
+        $readmemb("instructions.txt", Memory);
+end
 
-assign Instruction[7:0]   = Memory[ReadAddress + 3];
-assign Instruction[15:8]  = Memory[ReadAddress + 2];
-assign Instruction[23:16] = Memory[ReadAddress + 1];
-assign Instruction[31:24] = Memory[ReadAddress];
-
+always@(negedge clk)
+begin
+	Instruction[7:0] = Memory[ReadAddress + 3];
+	Instruction[15:8] = Memory[ReadAddress + 2];
+	Instruction[23:16] = Memory[ReadAddress + 1];
+	Instruction[31:24] = Memory[ReadAddress];
+end
 
 endmodule

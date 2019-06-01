@@ -1,20 +1,15 @@
-module Control(Ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
+module control(clk, ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
 
-input [5:0]Ins;
-output reg RegDst, Branch, MemRead, MemWrite,MemtoReg, ALUSrc, RegWrite;
-output reg [5:0] ALUOp;
+input clk;
+input [5:0] ins;
+output reg RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite;
 
-if(Ins == 6'b000000)
+always@(posedge clk) begin
+if(ins == 6'b000000)
 begin
 	assign RegDst = 1;
 	assign RegWrite = 1;
-	assign ALUSrc = 0;
-	assign ALUOp = 0;
-	assign MemWrite = 1;
-	assign MemRead = 1;
-	assign MemtoReg = 0;
-	assign PCSrc = 0;
-
+end
 end
 
 endmodule

@@ -1,30 +1,15 @@
-module Fetch(clk, in1, out1, ins);
+module Fetch(clk, ins);
 
 input clk;
-output [9:0] out1;
-output reg [9:0]in1;
-
 output [31:0] ins;
-
-wire [9:0]in2, out2, out3;
-reg [9:0]c1;
+wire [9:0] inPC, outAd;
 reg res;
 
-ProgramCounter pc1(clk, res, in1, out1);
-InstructionMemory im1(out1, ins);
-add a1(out1, c1, out2 );
+ProgramCounter pc1(clk , res, inPC, outAd);
+add a1(outAd, 10'd4, inPC);
+InstructionMemory im1(clk, outAd, ins);
 
 initial
-begin
-	res = 0;
-	in1 = 2;
-	c1 = 4;
-end
-
-always@(posedge clk)
-begin
-	assign in1 = out2;
-end
+	res = 1'b0;
 
 endmodule
-
