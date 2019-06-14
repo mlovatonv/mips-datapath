@@ -11,8 +11,8 @@ integer f;
 reg [4:0] dig;
 
 initial begin
-        $readmemb("registers.txt",registers);
-	f = $fopen("output.txt", "w");
+        $readmemb("output.txt",registers);
+	//f = $fopen("output.txt", "w");
 end
 
 always @(posedge clk)
@@ -25,9 +25,10 @@ always @(negedge clk)
 begin
 	if(Write == 1) begin
                 registers[WriteRegister] <= WriteData;
+		$writememb("output.txt", registers);
 	//	f = $fopen("output.txt");
-		//for(dig = 5'b0; dig <= 5'b11111; dig = dig + 5'b00001)
-		//	$fwrite(f,"%b\n", registers[dig]);
+	//	for(dig = 5'b0; dig <= 5'b11111; dig = dig + 5'b00001)
+	//		$fwrite(f,"%b\n", registers[dig]);
 	//	$fclose(f);
 	end
 end

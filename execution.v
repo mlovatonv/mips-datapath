@@ -7,7 +7,7 @@ wire [31:0] ins;
 wire RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, Inm;
 wire [1:0] ALUOp;
 wire [4:0] WRegister;
-wire [31:0] WData, RData1, RData2, res_se, val2;
+wire [31:0] WData, RData1, RData2, res_se, val2, aluresult, RDataDM;
 wire zero, overflow, carry;
 
 Fetch f1(clk, ins);
@@ -16,8 +16,11 @@ mux5 swreg(ins[20:16], ins[15:11], RegDst, WRegister);
 registerFile r1(clk, ins[25:21], ins[20:16], WRegister, WData, RData1, RData2, RegWrite);
 SignExtend se(ins[15:0], res_se);
 mux32 alusrc(RData2, res_se, ALUSrc, val2);
-alu a1(RData1, val2, operation, zero, WData, overflow, carry);
+alu a1(RData1, val2, operation, zero, aluresult, overflow, carry);
 AluControl ac1(ALUOp, ins[5:0], Inm, ALUOpFinal, operation);
+DataMemory dm(clk, aluresult, RData2, MemWrite, MemRead, RDataDM);
+mux32 mtorg(aluresult, RDataDM, MemtoReg, WData);
+
 
 initial
 	$monitor("R1: %d, R2: %d, Res: %d, Ope: %b", RData1, val2, WData, operation); 
