@@ -4,7 +4,6 @@ input clk;
 input [9:0]  ReadAddress;
 output reg[31:0] Instruction;
 reg [7:0] Memory [0:1023];
-reg [3:0] contador;
 
 initial begin
         $readmemb("instructions.txt", Memory);
