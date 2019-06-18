@@ -11,9 +11,9 @@ end
 
 always@(posedge clk)
 begin
-	Instruction[7:0] = Memory[ReadAddress + 3];
-	Instruction[15:8] = Memory[ReadAddress + 2];
-	Instruction[23:16] = Memory[ReadAddress + 1];
+	Instruction[7:0] = Memory[ReadAddress + 9'b000000011];
+	Instruction[15:8] = Memory[ReadAddress + 9'b000000010];
+	Instruction[23:16] = Memory[ReadAddress + 9'b000000001];
 	Instruction[31:24] = Memory[ReadAddress];
 end
 

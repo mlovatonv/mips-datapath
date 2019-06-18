@@ -23,7 +23,7 @@ DataMemory dm(clk, aluresult, RData2, MemWrite, MemRead, RDataDM);
 mux32 mtorg(aluresult, RDataDM, MemtoReg, WData);
 
 
-//always
-//	#20$display("instruction: %b", ); 
+initial
+	$monitor("alu1: %b, alu2: %b, res: %b, op: %b", RData1, val2, aluresult, operation); 
 
 endmodule
