@@ -3,27 +3,29 @@ module Fetch(clk, sl2, PCSrc, ins);
 input clk, PCSrc;
 input [31:0] sl2;
 output [31:0] ins;
-wire [9:0] inPCo, outAd, res, res2;
-reg [9:0] inPC;
+wire [31:0] inPCo, outAd, res, res2;
+wire [31:0] inPC;
 reg reset;
 
 ProgramCounter pc1(clk , reset, inPC, outAd);
-add a1(outAd, 10'd4, res);
-addj a2(res, sl2, res2);
-mux10 m10(clk, res, res2, PCSrc, inPCo);
-InstructionMemory im1(clk, outAd, ins);
+add a1(outAd, 32'd4, res);
+add a2(res, sl2, res2);
+mux32 m(clk, res, res2, PCSrc, inPC);
+InstructionMemory im1( outAd, ins);
 
-initial
+initial begin
+	//reset = 1'b1;
 	reset = 1'b0;
+end
 
-initial
-	inPC = 0;
+//initial
+//	inPC = 0;
 
 //always
-//	#10 $display("%b dat: %b %b %b %b %b %b %b %b\n", clk, reset, inPC, outAd, res, sl2, res2, PCSrc, ins);
+//	#10 $display("%b dat:%d %d %d %b\n", clk,inPC, outAd, (outAd + 3), ins);
 
-always
-	#5 assign inPC = inPCo;
+//always
+//	#5 assign inPC = inPCo;
 
 endmodule
 /*
