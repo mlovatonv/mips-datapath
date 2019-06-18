@@ -6,6 +6,10 @@ output reg RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, Inm;
 output reg [1:0] ALUOp;
 output reg [3:0] ALUOpFinal;
 
+initial begin
+        assign Branch = 0;
+end
+
 always@(posedge clk) begin
 	assign Inm = 0;
 	case (ins)

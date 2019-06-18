@@ -20,13 +20,15 @@ assign out = sel == 0? Reg1:
         sel ==1? Reg2 : 0;
 endmodule
 
-module mux10(Reg1, Reg2, sel, out);
+module mux10(clk, Reg1, Reg2, sel, out);
 
-input sel;
+input sel, clk;
 input [9:0] Reg1, Reg2;
-output [9:0] out;
+output reg [9:0] out;
 
-assign out = sel == 0? Reg1:
+always @(posedge clk) begin
+	 out = sel == 0? Reg1:
 	sel ==1? Reg2 : 0;
+end
 
 endmodule

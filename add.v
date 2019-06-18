@@ -15,3 +15,4 @@ output [9:0] ans;
 assign ans = val1 + val2;
 
 endmodule
+
