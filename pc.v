@@ -7,7 +7,7 @@ output reg [31:0] outAd;
 initial
         outAd = 0;
 
-always@(posedge clk)
+always@(negedge clk)
 begin
 	//assign outAd = 0;
 	if(reset == 1)

@@ -15,14 +15,15 @@ InstructionMemory im1( outAd, ins);
 
 initial begin
 	//reset = 1'b1;
-	reset = 1'b0;
+	reset = 1'b1;
+	#30 reset = 1'b0;
 end
 
 //initial
 //	inPC = 0;
 
-//always
-//	#10 $display("%b dat:%d %d %d %b\n", clk,inPC, outAd, (outAd + 3), ins);
+//initial
+//	$monitor($time," %b dat:%d %d %d %d\n", clk,inPC, outAd, res, res2);
 
 //always
 //	#5 assign inPC = inPCo;

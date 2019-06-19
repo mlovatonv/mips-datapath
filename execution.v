@@ -25,6 +25,6 @@ mux32 mtorg(clk, aluresult, RDataDM, MemtoReg, WData);
 
 initial
 	//$monitor($time,"ins: %b alu1: %d, alu2: %d, res: %d, op: %b",ins, RData1, val2, aluresult, operation); 
-	$monitor($time,"ins: %b, %d, %d, %b, %d",ins, RData1, val2, operation, aluresult);
+	$monitor($time," %b ins: %b, %d, %d, %d, %b",clk,ins, RData1, val2, aluresult, operation);
 
 endmodule

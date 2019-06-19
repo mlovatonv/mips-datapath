@@ -5,7 +5,7 @@ input [31:0] Reg1;
 input [31:0] Reg2;
 output reg[31:0] out;
 
-always @(posedge clk) begin
+always @ (negedge clk) begin
 	 out = sel == 0? Reg1:
 	 sel ==1? Reg2 : 0;
 end
