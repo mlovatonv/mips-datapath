@@ -1,12 +1,16 @@
-module control(clk, ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite, ALUOpFinal, Inm);
+module control(clk,ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite, ALUOpFinal, Inm);
 
 input clk;
 input [5:0] ins;
 output reg RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, Inm;
-output reg [1:0] ALUOp;
+output reg  [1:0] ALUOp;
 output reg [3:0] ALUOpFinal;
 
-always@(posedge clk) begin
+initial begin
+        assign Branch = 0;
+end
+
+always @ (negedge clk)  begin
 	assign Inm = 0;
 	case (ins)
 	6'b000000: begin //R operations
