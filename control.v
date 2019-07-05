@@ -1,8 +1,8 @@
-module control(clk, func, ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite, ALUOpFinal, Inm, Jump, negzero);
+module control(clk, func, ins, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite, ALUOpFinal, Inm, Jump, negzero, lui);
 
 input clk;
 input [0:5] ins, func;
-output reg Branch, RegWrite, Inm, Jump, negzero;
+output reg Branch, RegWrite, Inm, Jump, negzero, lui;
 output reg [0:1] MemRead, MemtoReg, MemWrite, RegDst, ALUSrc;
 output reg  [0:1] ALUOp;
 output reg [0:3] ALUOpFinal;
@@ -15,6 +15,7 @@ always @ (*)  begin
 	Inm = 0;
         Jump = 0;
         negzero = 0;
+        lui = 0;
 	case (ins)
 	6'b000000: begin //R operations
 		RegDst = 1;
@@ -150,14 +151,13 @@ always @ (*)  begin
 	end
 	6'b001111: begin //lui
 		RegDst = 0;
-                ALUSrc = 1;
+                ALUSrc = 0;
                 MemtoReg = 0;
                 RegWrite = 1;
                 MemRead = 0;
                 MemWrite = 0;
                 Branch = 0;
-                ALUOp = 2'b10;
-                ALUOpFinal = 4'b0000;//suma1
+                lui = 1;
 	end
 	6'b000100: begin //beq
                 RegDst = 0;

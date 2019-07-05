@@ -8,7 +8,7 @@ initial begin
 end
 
 always@(posedge clk)
-    c = (32'hffffffff<<2) + 4;
+    c = (32'hffff<<16);
 
 endmodule
 
@@ -18,7 +18,7 @@ wire [31:0]c;
 xd xd(clk,c);
 
 initial
-    $monitor("%d", c);
+    $monitor("%b", c);
 
 initial begin
  clk = 0;
