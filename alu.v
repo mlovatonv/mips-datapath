@@ -1,12 +1,13 @@
-module alu(Reg1, Reg2, operation, zero, result, overflow, carry);
+module alu(clk,Reg1, Reg2, operation, zero, result, overflow, carry);
 
-input [31:0] Reg1, Reg2;
-input [3:0] operation;
+input clk;
+input [0:31] Reg1, Reg2;
+input [0:3] operation;
 
 output zero, overflow, carry;
-output [31:0] result;
+output [0:31] result;
 
-reg [32:0] res;
+reg [0:32] res;
 
 always @(*)
 begin
@@ -21,9 +22,9 @@ begin
 end
 
 assign zero = res == 0;
-assign carry = res[32];
+assign carry = res[0];
 assign overflow = carry;
-assign result = res[31:0];
+assign result = res[1:32];
 
 endmodule
 

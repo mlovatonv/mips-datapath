@@ -5,7 +5,7 @@ Execution e1(clk);
 
 initial begin
 	clk = 0;
-	#1000
+	#210
 	$finish;
 end
 

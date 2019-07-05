@@ -1,9 +1,9 @@
-module AluControl(ALUOp, Funct, Inm, ALUOpFinal, Control);
-input Inm;
-input [1:0] ALUOp;
-input [5:0] Funct;
-input [3:0] ALUOpFinal;
-output reg[3:0] Control;
+module AluControl(clk,ALUOp, Funct, Inm, ALUOpFinal, Control);
+input Inm,clk;
+input [0:1] ALUOp;
+input [0:5] Funct;
+input [0:3] ALUOpFinal;
+output reg[0:3] Control;
 
 always@(*)
 begin
@@ -26,5 +26,6 @@ begin
                 	end
 		endcase
 	end
+
 end
 endmodule

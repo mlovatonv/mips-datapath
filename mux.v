@@ -1,34 +1,49 @@
 module mux32(clk, Reg1, Reg2, sel, out);
 
 input sel, clk;
-input [31:0] Reg1;
-input [31:0] Reg2;
-output reg[31:0] out;
+input [0:31] Reg1;
+input [0:31] Reg2;
+output reg[0:31] out;
 
-always @ (negedge clk) begin
+always @ (*) begin
 	 out = sel == 0? Reg1:
 	 sel ==1? Reg2 : 0;
 end
 endmodule
 
-module mux5(Reg1, Reg2, sel, out);
+module mux32v(clk, Reg1, Reg2, sel, out);
 
-input sel;
-input [4:0] Reg1;
-input [4:0] Reg2;
-output [4:0] out;
+input sel, clk;
+input [0:31] Reg1;
+input [0:31] Reg2;
+output reg[0:31] out;
 
-assign out = sel == 0? Reg1:
+always @ (posedge clk) begin
+	 out = sel == 0? Reg1:
+	 sel ==1? Reg2 : 0;
+end
+endmodule
+
+module mux5(clk, Reg1, Reg2, sel, out);
+
+input sel, clk;
+input [0:4] Reg1;
+input [0:4] Reg2;
+output reg[0:4] out;
+
+always @ (*) begin
+	out = sel == 0? Reg1:
         sel ==1? Reg2 : 0;
+end
 endmodule
 
 module mux10(clk, Reg1, Reg2, sel, out);
 
 input sel, clk;
-input [9:0] Reg1, Reg2;
-output reg [9:0] out;
+input [0:9] Reg1, Reg2;
+output reg [0:9] out;
 
-always @(posedge clk) begin
+always @(*) begin
 	 out = sel == 0? Reg1:
 	sel ==1? Reg2 : 0;
 end
