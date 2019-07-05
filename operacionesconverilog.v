@@ -3,12 +3,12 @@ input clk;
 reg [31:0]a, b;
 output reg [31:0] c;
 initial begin
-    a = 65536;
+    a = 4294967295;
     b = 131072;
 end
 
 always@(posedge clk)
-    c = ~(a | b);
+    c = (32'hffffffff<<2) + 4;
 
 endmodule
 

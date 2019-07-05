@@ -7,7 +7,8 @@ reg [0:7] Memory [0:255];
 
 initial begin
         //$readmemh("Ins1hex.txt", Memory);
-		$readmemh("Ins2hex.txt", Memory);
+		//$readmemh("Ins2hex.txt", Memory);
+		$readmemh("Ins3hex.txt", Memory);
 end
 
 always@(*)

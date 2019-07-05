@@ -1,11 +1,12 @@
 module tb;
-reg clk;
+reg clk, reset;
 
-Execution e1(clk);
+Execution e1(clk, reset);
 
 initial begin
 	clk = 0;
-	#210
+	reset = 0;
+	#310
 	$finish;
 end
 
